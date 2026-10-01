@@ -1,0 +1,6 @@
+# Turn off directory listing -- this is what was showing your file list.
+Options -Indexes
+
+# Land on index.php by default, which routes to the student login (or
+# straight to a dashboard if already signed in).
+DirectoryIndex index.php
