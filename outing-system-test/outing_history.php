@@ -62,7 +62,6 @@ if ($view === 'standard') {
     <main style="padding: 16px;">
         <h1>Outing History</h1>
         <?= flash_render() ?>
-        <?= export_pdf_button() ?>
 
         <?php if ($canViewSpecial): ?>
         <?= tab_nav([
@@ -80,7 +79,7 @@ if ($view === 'standard') {
                 'late' => ['Late returns only', 'outing_history.php?view=standard&filter=late'],
             ], $filter) ?>
 
-            <?= date_filter_form('outing_history.php', $dateRange['from'], $dateRange['to'], ['view' => 'standard', 'filter' => $filter]) ?>
+            <?= date_filter_form('outing_history.php', $dateRange['from'], $dateRange['to'], ['view' => 'standard', 'filter' => $filter], true) ?>
 
             <?php if (!$records): ?>
                 <p>No records match this filter.</p>
@@ -145,7 +144,7 @@ if ($view === 'standard') {
                 </label>
             </form>
 
-            <?= date_filter_form('outing_history.php', $dateRange['from'], $dateRange['to'], ['view' => 'special', 'status' => $statusFilter, 'type' => $typeFilter]) ?>
+            <?= date_filter_form('outing_history.php', $dateRange['from'], $dateRange['to'], ['view' => 'special', 'status' => $statusFilter, 'type' => $typeFilter], true) ?>
 
             <?php if (!$requests): ?>
                 <p>No requests match this filter.</p>

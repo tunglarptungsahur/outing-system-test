@@ -30,7 +30,7 @@ $requests = get_student_requests($_SESSION['std_no']);
 
         <?= flash_render() ?>
 
-        <p><a href="new_request.php">+ New special request</a></p>
+        <p><a href="new_request.php" class="btn-primary">+ New special request</a></p>
 
         <?php if (!$requests): ?>
             <p>You haven't submitted any outing requests yet.</p>
@@ -62,14 +62,15 @@ $requests = get_student_requests($_SESSION['std_no']);
                             </td>
                             <td>
                                 <?php if ($r['status'] === 'pending'): ?>
-                                    <a href="edit_request.php?id=<?= (int) $r['id'] ?>">Edit</a>
-                                    &nbsp;
+                                  <div class="row-actions">
+                                    <a href="edit_request.php?id=<?= (int) $r['id'] ?>" class="btn-secondary btn-sm">Edit</a>
                                     <form method="post" action="cancel_request.php" style="display:inline"
                                           onsubmit="return confirm('Cancel this outing request?');">
                                         <?= csrf_field() ?>
                                         <input type="hidden" name="id" value="<?= (int) $r['id'] ?>">
-                                        <button type="submit" class="btn-danger">Cancel</button>
+                                        <button type="submit" class="btn-danger btn-sm">Cancel</button>
                                     </form>
+                                  </div>
                                 <?php endif; ?>
                             </td>
                         </tr>

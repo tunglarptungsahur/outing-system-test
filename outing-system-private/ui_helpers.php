@@ -165,9 +165,10 @@ function export_pdf_button(): string
  * Renders the "From / To / Filter / Clear" date range form shared by
  * every report and history page. $hidden carries any other filter
  * (status, late-only, etc.) forward as hidden fields so switching the
- * date range doesn't silently reset it.
+ * date range doesn't silently reset it. $withExport adds the Export to
+ * PDF button at the right end of the bar.
  */
-function date_filter_form(string $action, ?string $from, ?string $to, array $hidden = []): string
+function date_filter_form(string $action, ?string $from, ?string $to, array $hidden = [], bool $withExport = false): string
 {
     $out  = '<form method="get" action="' . h($action) . '" class="date-filter">';
     foreach ($hidden as $name => $value) {
@@ -180,6 +181,9 @@ function date_filter_form(string $action, ?string $from, ?string $to, array $hid
     $out .= '<button type="submit">Filter</button>';
     if ($from !== null || $to !== null) {
         $out .= ' <a href="' . h($action) . '">Clear</a>';
+    }
+    if ($withExport) {
+        $out .= export_pdf_button();   // pushed to the right edge by CSS
     }
     $out .= '</form>';
     return $out;

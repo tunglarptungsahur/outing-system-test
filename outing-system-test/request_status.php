@@ -44,7 +44,6 @@ $requests = get_all_requests(
     <main style="padding: 16px;">
         <h1>Request status</h1>
         <?= flash_render() ?>
-        <?= export_pdf_button() ?>
 
         <form method="get" action="request_status.php" class="no-print">
             <label>
@@ -71,7 +70,7 @@ $requests = get_all_requests(
             </label>
         </form>
 
-        <?= date_filter_form('request_status.php', $dateRange['from'], $dateRange['to'], ['status' => $statusFilter, 'type' => $typeFilter]) ?>
+        <?= date_filter_form('request_status.php', $dateRange['from'], $dateRange['to'], ['status' => $statusFilter, 'type' => $typeFilter], true) ?>
 
         <?php if (!$requests): ?>
             <p>No requests match this filter.</p>
